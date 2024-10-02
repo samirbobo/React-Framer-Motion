@@ -18,6 +18,19 @@ const nextVariants = {
   },
 };
 
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255,255,255)",
+    boxShadow: "0px 0px 8px rgb(255,255,255)",
+    transition: {
+      duration: 0.3,
+      repeat: Infinity,
+      repeatType: "reverse",
+    },
+  },
+};
+
 // eslint-disable-next-line react/prop-types
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
@@ -58,19 +71,13 @@ const Base = ({ addBase, pizza }) => {
         <motion.div
           className="next"
           variants={nextVariants}
-          
+
           // ممكن احذف دول عادي خالص والسبب ان اسمائهم نفس اسماء العنصر الاب بتاعنا في هيخش علي خواص الاوبجيت الي نفذته وهيدور علي نفس اسم هيدن الي ورثه من الاب
           // initial="hidden"
           // animate="visible"
         >
           <Link to="/toppings">
-            <motion.button
-              whileHover={{
-                scale: 1.1,
-                textShadow: "0px 0px 8px rgb(255,255,255)",
-                boxShadow: "0px 0px 8px rgb(255,255,255)",
-              }}
-            >
+            <motion.button variants={buttonVariants} whileHover="hover">
               Next
             </motion.button>
           </Link>
