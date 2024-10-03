@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const containerVariants = {
   hidden: {
@@ -22,6 +22,10 @@ const containerVariants = {
       damping: 8,
     },
   },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
 };
 
 const childrenVariants = {
@@ -29,12 +33,12 @@ const childrenVariants = {
   visible: { opacity: 1 },
 };
 
-const Order = ({ pizza }) => {
-  const [showTitle, setShowTitle] = useState(true);
-
-  setTimeout(() => {
-    setShowTitle(false);
-  }, 4000);
+const Order = ({ pizza, setShowModel }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setShowModel(true);
+    }, 2000);
+  }, [setShowModel]);
 
   return (
     <motion.div
@@ -42,12 +46,9 @@ const Order = ({ pizza }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
-      <AnimatePresence>
-        {showTitle && (
-          <motion.h2 exit={{ y: -1000 }}>Thank you for your order :)</motion.h2>
-        )}
-      </AnimatePresence>
+      <h2>Thank you for your order :)</h2>
 
       <motion.p variants={childrenVariants}>
         You ordered a {pizza.base} pizza with:

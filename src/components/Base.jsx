@@ -3,11 +3,16 @@ import { motion } from "framer-motion";
 
 const containerVariants = {
   // كلمه هيدن ديه مش شرط تكون ثابته انا بسميها اي اسم انا عايزه
-  hidden: { x: "100vw" },
+  hidden: { opacity: 0, x: "100vw" },
   visible: {
+    opacity: 1,
     x: 0,
     // بعمل اسلوب التغير في العنصر وسرعته داخل العنصر وهو بينفذ الانيميشن وبيتم فاهمه والتعامل معاه
     transition: { type: "spring", stiffness: 120 },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
   },
 };
 const nextVariants = {
@@ -47,6 +52,7 @@ const Base = ({ addBase, pizza }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h3>Step 1: Choose Your Base</h3>
       <ul>

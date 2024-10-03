@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const containerVariants = {
-  hidden: { x: "100vw" },
+  hidden: { opacity: 0, x: "100vw" },
   visible: {
+    opacity: 1,
     x: 0,
     transition: { type: "spring", stiffness: 120 },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
   },
 };
 const buttonVariants = {
@@ -38,6 +43,7 @@ const Toppings = ({ addTopping, pizza }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h3>Step 2: Choose Toppings</h3>
       <ul>
