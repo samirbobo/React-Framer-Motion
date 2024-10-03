@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 1, duration: 1.5 },
+  },
+  // في حاله خروج الكمبونانت من شجره تدفق الرياكت او الانتقال لصفحه اخري ينفذ هذا الانيمشين وهو الانتقال لاقصي اليسار
+  // حته يخرج من نطاق رويه الشاشه
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
+};
+
 const buttonVariants = {
   hover: {
     // scale: 1.1, دال الوضع الطبيعي عشان اخلي الزرار بتاعي يكبر 10 في الميه لما اجي المسه
@@ -21,9 +37,10 @@ const Home = () => {
   return (
     <motion.div
       className="home container"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1, duration: 1.5 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
       <h2>Welcome to Pizza Joint</h2>
       <Link to="/base">
