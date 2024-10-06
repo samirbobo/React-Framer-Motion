@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Loader from "./Loader";
 
 const containerVariants = {
   hidden: {
@@ -48,6 +49,8 @@ const Home = () => {
           Create Your Pizza
         </motion.button>
       </Link>
+      {/* هنا بنشرح ازاي نعمل انيميشن لودر كل تفاصيل الشرح في الكمونانت */}
+      <Loader />
     </motion.div>
   );
 };
